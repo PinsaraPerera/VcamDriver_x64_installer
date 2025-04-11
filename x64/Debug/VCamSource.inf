@@ -1,0 +1,50 @@
+[Version]
+Signature="$WINDOWS NT$"
+Class=Image
+ClassGuid={6BDD1FC6-810F-11D0-BEC7-08002BE2092F}
+Provider=%ManufacturerName%
+DriverVer=04/11/2025,1.0.0.0
+CatalogFile.ntamd64=VCamSource.cat
+
+[Manufacturer]
+%ManufacturerName%=DeviceList,NTamd64
+
+[DeviceList.NTamd64]
+%DeviceName%=Install.NTamd64, USB\VID_MPP&PID_PERE1
+
+[Install.NTamd64]
+Include=ks.inf
+Needs=KS.Registration
+CopyFiles=DriverCopyFiles.NTamd64
+
+[DestinationDirs]
+DriverCopyFiles.NTamd64=12
+
+[DriverCopyFiles.NTamd64]
+VCamSource.dll
+
+[Install.Services.NTamd64]
+AddService=%DeviceName%,0x00000002,ServiceInstallSection.NTamd64
+
+[ServiceInstallSection.NTamd64]
+DisplayName=%DeviceName%
+ServiceType=1
+StartType=3
+ErrorControl=1
+ServiceBinary=%12%\VCamSource.dll
+
+[SourceDisksNames.x86]
+1 = %DeviceName%,,,,
+
+[SourceDisksNames.amd64]
+1 = %DeviceName%,,,,
+
+[SourceDisksFiles.x86]
+VCamSource.dll=1
+
+[SourceDisksFiles.amd64]
+VCamSource.dll=1
+
+[Strings]
+ManufacturerName="Pawan Pinsara Perera"
+DeviceName="TextBlur Virtual Camera"
